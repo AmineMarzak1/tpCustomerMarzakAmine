@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ejb;
+
 import entities.Customer;
 import java.util.List;
 import jakarta.ejb.Stateless;
@@ -20,15 +21,20 @@ public class CustomerManager {
     private EntityManager em;
 
     public List<Customer> getAllCustomers() {
-       Query query = em.createNamedQuery("Customer.findAll");
-       return query.getResultList();
+        Query query = em.createNamedQuery("Customer.findAll");
+        return query.getResultList();
     }
 
     public Customer update(Customer customer) {
-       return em.merge(customer);
+        return em.merge(customer);
     }
 
     public void persist(Customer customer) {
-       em.persist(customer);
+        em.persist(customer);
     }
+
+    public Customer getCustomer(int idCustomer) {
+        return em.find(Customer.class, idCustomer);
+    }
+    
 }
